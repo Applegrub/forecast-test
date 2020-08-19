@@ -8,9 +8,15 @@ const Title = styled.div`
 padding: 16px 24px;
 text-align: center;
 font-size: 30px;
+@media screen and (max-width: 600px){
+font-size: 20px;
+}
 `
 const Info = styled.div`
 font-size: 20px;
+@media screen and (max-width: 600px){
+font-size: 15px;
+}
 padding: -5px;
 &>*{
 padding: 5px;
