@@ -1,42 +1,38 @@
 import React, {useEffect, useState} from "react";
 import styled from "@emotion/styled";
+import List from "@material-ui/core/List";
+import CityForecast from "./CityForecast";
+import  axios from "axios";
 
 const Root = styled.div`
-width: 100px;
-height: 100px;
 color: white;
 font-size: 3vh;
-display: flex;
-align-items: center;
-justify-content: center;
-background: #a3c7ff;
-box-shadow: 0 0 30px rgba(13, 21, 63, 0.25);
 `
 
 function GetterForecast() {
     const [isLoaded, setIsLoaded] = useState(false);
-    const [items, setItems] = useState({});
+    const [data, setData] = useState({});
 
-    const href = "https://api.openweathermap.org/data/2.5/weather?q=London&appid=12048a468d7808777fe096886d9beb48"
-    useEffect( () => {
-        fetch(href, {method: "GET",}).then(async response => {
-            if (response.ok) {
-                setIsLoaded(true);
-                setItems(response);
-                return response;
-            } else {
-                const err = await response.json();
-                throw new Error(err.message);
-            }
-        });
+    const url = "https://api.openweathermap.org/data/2.5/weather?q=London&appid=12048a468d7808777fe096886d9beb48"
+    useEffect(() => {
+        async function fetchData() {
+            await axios.get(url)
+                .then(({data}) => {
+                    setData(data);
+                    console.log(data)
+                    setIsLoaded(true);})
+                .catch(e => console.error(e))
+        }
+        fetchData()
     }, [])
-    if  (!isLoaded) {
+
+     if  (!isLoaded) {
         return <Root>Загрузка...</Root>;
     } else {
         return (
-            <Root>
-
-            </Root>
+            <List>
+                <CityForecast cityInfo = {data}/>
+            </List>
         );
     }
 }
