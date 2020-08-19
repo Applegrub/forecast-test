@@ -8,11 +8,9 @@ import InfoDialog from "./InfoDialog";
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
-        maxWidth: 360,
-        backgroundColor: theme.palette.info.light,
+        maxWidth: 400,
     },
 }));
-
 
 
 function CityForecast(props) {
@@ -28,13 +26,21 @@ function CityForecast(props) {
         setOpen(true);
     }
 
+    const temp = cityInfo.main.temp;
     return <div className={classes.root}>
-        <ListItem button variant="outlined" color="primary" onClick={handleClickOpen}>
-            <ListItemText primary={cityInfo.name} />
-            {console.log(cityInfo.name)}
+        <ListItem button variant="outlined" onClick={handleClickOpen}>
+            <ListItemText
+                primary={cityInfo.name}
+                secondary={`Temperature today: ${toCelsius(temp)} °C`}
+            />
         </ListItem>
-        <InfoDialog open={open} onClose={handleClose}/>
+        <InfoDialog open={open} onClose={handleClose} cityInfo={cityInfo}/>
     </div>
+}
+
+export const toCelsius = (degris) => {
+    const result = degris - 273;
+    return result.toFixed(0);
 }
 
 export default CityForecast;
