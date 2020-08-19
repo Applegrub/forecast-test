@@ -35,7 +35,7 @@ const citys = ['London', 'Moscow', 'Canberra']
 
 function App() {
     return <Root>
-        {citys.map((city) => <GetterForecast city={city}/>)}
+        {citys.map((city) => <GetterForecast key={city} city={city}/>)}
     </Root>
 }
 

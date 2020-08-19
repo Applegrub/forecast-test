@@ -13,19 +13,17 @@ function GetterForecast(props) {
     const [isLoaded, setIsLoaded] = useState(false);
     const [data, setData] = useState({});
 
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=12048a468d7808777fe096886d9beb48`
     useEffect(() => {
         async function fetchData() {
-            await axios.get(url)
+            await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=12048a468d7808777fe096886d9beb48`)
                 .then(({data}) => {
                     setData(data);
-                    console.log(data)
                     setIsLoaded(true);
                 })
                 .catch(e => console.error(e))
         }
-
         fetchData()
+        //eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     if (!isLoaded) {
