@@ -8,7 +8,6 @@ import InfoDialog from "./InfoDialog";
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
-        maxWidth: 400,
     },
 }));
 

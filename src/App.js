@@ -15,6 +15,10 @@ rgba(56, 102, 169, 0.92) 63.84%, #2E5DA4 83.89%, #2E5DA4 91.59%);
 
 &>*{
 margin: 5px;
+max-width: 400px;
+@media screen and (max-width: 600px){
+max-width: 300px;
+}
 border-radius: 10px;
 background: white;
 }
