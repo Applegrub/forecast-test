@@ -40,7 +40,7 @@ function InfoDialog(props) {
                     <div>Temperature max: {toCelsius(main.temp_max)} °C</div>
                     <div>And it feels like {toCelsius(main.feels_like)} °C</div>
                     <WeatherContent>
-                        <Weather src={`http://openweathermap.org/img/wn/${cityInfo.weather[0].icon}@2x.png`}
+                        <Weather src={`https://openweathermap.org/img/wn/${cityInfo.weather[0].icon}@2x.png`}
                                  alt={cityInfo.weather[0].main}/>
                         <div> {cityInfo.weather[0].description}</div>
                     </WeatherContent>
