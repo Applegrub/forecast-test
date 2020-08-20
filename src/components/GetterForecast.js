@@ -10,8 +10,8 @@ font-size: 3vh;
 `
 
 const map = new Map([
-    ['London', [-0.13,51.51]],
-    ['Moscow', [37.618423,55.751244]],
+    ['London', [-0.13, 51.51]],
+    ['Moscow', [37.618423, 55.751244]],
     ['Wien', [16.37, 48.21]]])
 
 function GetterForecast(props) {
