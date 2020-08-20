@@ -11,7 +11,7 @@ font-size: 3vh;
 
 const map = new Map([
     ['London', [-0.13,51.51]],
-    ['Moscow', [37.62,55.75]],
+    ['Moscow', [37.618423,55.751244]],
     ['Wien', [16.37, 48.21]]])
 
 function GetterForecast(props) {
@@ -22,7 +22,7 @@ function GetterForecast(props) {
 
     const coords = map.get(city)
     const oneDayAPI = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=12048a468d7808777fe096886d9beb48`;
-    const threeDayAPI = `https://api.openweathermap.org/data/2.5/onecall?lat=${coords[0]}&lon=${coords[1]}&exclude=hourly&appid=3238ccb17a8a11abd9f0a08c8f575a8f`;
+    const threeDayAPI = `https://api.openweathermap.org/data/2.5/onecall?lat=${coords[1]}&lon=${coords[0]}&exclude=hourly&appid=3238ccb17a8a11abd9f0a08c8f575a8f`;
     useEffect(() => {
         async function fetchData() {
             await axios.get(oneDayAPI)
