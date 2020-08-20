@@ -32,11 +32,11 @@ color: black;
 font-size: 20px;
 }
 `
-const citys = ['London', 'Moscow', 'Canberra']
+const citys = ['London', 'Moscow', 'Wien']
 
 function App() {
     return <Root>
-        {citys.map((city) => <GetterForecast key={city} city={city}/>)}
+        {citys.map((city) => <GetterForecast key={city} city={city} />)}
     </Root>
 }
 

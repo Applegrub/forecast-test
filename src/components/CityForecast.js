@@ -1,7 +1,9 @@
-import React, {useState} from "react";
+import React from "react";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import {useObserver} from 'mobx-react'
+import {useStores} from "../hooks/use-stores";
 import InfoDialog from "./InfoDialog";
 
 
@@ -11,31 +13,27 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-
-function CityForecast(props) {
+const CityForecast = (props) => {
+    const {cityInfo, dataThreeDays} = props
     const classes = useStyles();
-    const {cityInfo} = props
-    const [open, setOpen] = useState(false);
-
-    const handleClose = (value) => {
-        setOpen(false);
-    };
+    const {dialogStore} = useStores()
 
     function handleClickOpen() {
-        setOpen(true);
+        dialogStore.openDialog()
+        dialogStore.addInfo(dataThreeDays)
     }
 
     const temp = cityInfo.main.temp;
-    return <div className={classes.root}>
+    return useObserver(() => (<div className={classes.root}>
         <ListItem button variant="outlined" onClick={handleClickOpen}>
             <ListItemText
                 primary={cityInfo.name}
                 secondary={`Temperature today: ${toCelsius(temp)} °C`}
             />
         </ListItem>
-        <InfoDialog open={open} onClose={handleClose} cityInfo={cityInfo}/>
-    </div>
-}
+        <InfoDialog/>
+    </div>))
+};
 
 export const toCelsius = (degris) => {
     const result = degris - 273;
