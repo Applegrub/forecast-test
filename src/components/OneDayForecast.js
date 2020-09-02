@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
-import {toCelsius} from "./CityForecast";
+import {toCelsius} from "../apolloComponents/ApolloCityForecast";
+
 
 
 const Root = styled.div`

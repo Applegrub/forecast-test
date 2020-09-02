@@ -1,30 +1,15 @@
 import React from 'react';
 import styled from "@emotion/styled";
-import { ApolloClient } from 'apollo-client';
-import { InMemoryCache } from 'apollo-cache-inmemory';
-import { ApolloProvider } from 'react-apollo';
-import { RestLink } from 'apollo-link-rest';
 import ApolloGetterForecast from "./apolloComponents/ApolloGetterForecast";
 
-const restLink = new RestLink({
-    uri: 'https://api.openweathermap.org/data/2.5/weather?q=',
-});
-
-const client = new ApolloClient({
-    link: restLink,
-    cache: new InMemoryCache(),
-});
 
 
-const App = () => {
-    return <Root>
-         <ApolloGetterForecast/>
-    </Root>
-}
+const citys = ["London", "Vienna","Moscow"]
+
 const ApolloApp = () => (
-    <ApolloProvider client={client}>
-        <App />
-    </ApolloProvider>
+        <Root>
+            {citys.map(city=><ApolloGetterForecast key={city} city={city}/>) }
+        </Root>
 );
 
 export default ApolloApp;

@@ -18,13 +18,13 @@ const Info = styled.div`
 `
 
 
-const InfoDialog = () => {
+const InfoDialog = ({infoForDialog}) => {
     const {dialogStore} = useStores()
     const handleClose = () => {
         dialogStore.closeDialog()
     };
-    const info = dialogStore.getinfo
 
+    const info = infoForDialog.threeDays
     return useObserver(() => (<Dialog onClose={handleClose} open={dialogStore.isOpen}>
             <Title>More about weather</Title>
             <DialogContent>

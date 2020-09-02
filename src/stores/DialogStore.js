@@ -4,19 +4,10 @@ import {action, computed, observable, decorate} from "mobx";
 export default class DialogStore {
     constructor() {
         this.open = false;
-        this.info = {
-            daily: [{}, {dt: '', temp: 0, weather: [{main: "", description: "", icon: ""}]},
-                {dt: '', temp: 0, weather: [{main: "", description: "", icon: ""}]},
-                {dt: '', temp: 0, weather: [{main: "", description: "", icon: ""}]}]
-        }
     }
 
     get isOpen() {
         return this.open
-    }
-
-    get getinfo() {
-        return this.info
     }
 
     addInfo(props) {
