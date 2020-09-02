@@ -1,6 +1,34 @@
 import React from 'react';
 import styled from "@emotion/styled";
-import GetterForecast from "./components/GetterForecast";
+import { ApolloClient } from 'apollo-client';
+import { InMemoryCache } from 'apollo-cache-inmemory';
+import { ApolloProvider } from 'react-apollo';
+import { RestLink } from 'apollo-link-rest';
+import ApolloGetterForecast from "./apolloComponents/ApolloGetterForecast";
+
+const restLink = new RestLink({
+    uri: 'https://api.openweathermap.org/data/2.5/weather?q=',
+});
+
+const client = new ApolloClient({
+    link: restLink,
+    cache: new InMemoryCache(),
+});
+
+
+const App = () => {
+    return <Root>
+         <ApolloGetterForecast/>
+    </Root>
+}
+const ApolloApp = () => (
+    <ApolloProvider client={client}>
+        <App />
+    </ApolloProvider>
+);
+
+export default ApolloApp;
+
 
 const Root = styled.div`
 height: 100vh;
@@ -32,12 +60,3 @@ color: black;
 font-size: 20px;
 }
 `
-const citys = ['London', 'Moscow', 'Wien']
-
-function App() {
-    return <Root>
-        {citys.map((city) => <GetterForecast key={city} city={city} />)}
-    </Root>
-}
-
-export default App;

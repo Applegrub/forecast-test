@@ -1,13 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {Provider} from "mobx-react";
 import {mobXStore} from "./contexts";
+import ApolloApp from "./App";
+
 
 
 ReactDOM.render(<Provider {...mobXStore}>
-            <App/>
+        <ApolloApp/>
         </Provider>
     ,
     document.getElementById('root')

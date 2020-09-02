@@ -25,13 +25,13 @@ function GetterForecast(props) {
     const threeDayAPI = `https://api.openweathermap.org/data/2.5/onecall?lat=${coords[1]}&lon=${coords[0]}&exclude=hourly&appid=3238ccb17a8a11abd9f0a08c8f575a8f`;
     useEffect(() => {
         async function fetchData() {
-            await axios.get(oneDayAPI)
+             axios.get(oneDayAPI)
                 .then(({data}) => {
                     setData(data);
                     setIsLoaded(true);
                 })
                 .catch(e => console.error(e))
-            await axios.get(threeDayAPI)
+             axios.get(threeDayAPI)
                 .then(({data}) => {
                     setDataThreeDays(data);
                     setIsLoaded(true);
