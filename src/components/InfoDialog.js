@@ -2,8 +2,6 @@ import React from "react";
 import Dialog from "@material-ui/core/Dialog";
 import styled from "@emotion/styled";
 import DialogContent from "@material-ui/core/DialogContent";
-import {useObserver} from 'mobx-react'
-import {useStores} from "../hooks/use-stores";
 import OneDayForecast from "./OneDayForecast";
 
 const Title = styled.div`
@@ -14,28 +12,22 @@ font-size: 30px;
 font-size: 20px;
 }
 `
-const Info = styled.div`
-`
 
 
-const InfoDialog = ({infoForDialog}) => {
-    const {dialogStore} = useStores()
-    const handleClose = () => {
-        dialogStore.closeDialog()
-    };
+const InfoDialog = ({infoForDialog, open, onClose}) => {
 
     const info = infoForDialog.threeDays
-    return useObserver(() => (<Dialog onClose={handleClose} open={dialogStore.isOpen}>
+
+    return <Dialog onClose={onClose} open={open}>
             <Title>More about weather</Title>
             <DialogContent>
-                <Info>
+                <div>
                     <OneDayForecast day={info.daily[1]}/>
                     <OneDayForecast day={info.daily[2]}/>
                     <OneDayForecast day={info.daily[3]}/>
-                </Info>
+                </div>
             </DialogContent>
         </Dialog>
-    ));
 }
 
 export default InfoDialog;
